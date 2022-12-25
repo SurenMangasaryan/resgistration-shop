@@ -1,0 +1,105 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: rgb(56, 43, 173);
+    position: relative;
+}
+
+.log-out {
+    padding: 10px 45px;
+    border: 1px solid rgb(255, 255, 255);
+    background-color: transparent;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 18px;
+    font-weight: 300;
+    color: rgb(255, 255, 255);
+    cursor: pointer;
+    transition: all .3s linear;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+.log-out:hover {
+    background: white;
+    color: rgb(56, 43, 173);
+}
+
+.inner-all-products {
+    padding: 60px 0;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+    row-gap: 100px;
+}
+
+.inner-all-categories {
+    padding-top: 120px;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+    gap: 10px;
+}
+
+.the-product {
+    width: 400px;
+    height: 400px;
+}
+
+.the-product>* {
+    margin: 5px 0;
+    color: white;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: 400;
+}
+
+.the-product h1 {
+    text-decoration: underline;
+}
+
+.the-product img {
+    width: 70%;
+    height: 250px;
+}
+
+.slide-btns {
+    padding: 5px 25px;
+    border: 1px solid rgb(255, 255, 255);
+    background-color: transparent;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 18px;
+    font-weight: 300;
+    color: rgb(255, 255, 255);
+    cursor: pointer;
+    transition: all .3s linear;
+}
+
+.slide-btns:hover {
+    background: white;
+    color: rgb(56, 43, 173);
+}
+
+.catigory-btn {
+    padding: 5px 25px;
+    border: 1px solid rgb(255, 255, 255);
+    background-color: transparent;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 18px;
+    font-weight: 300;
+    color: rgb(255, 255, 255);
+    cursor: pointer;
+    transition: all .3s linear;
+}
+
+.catigory-btn:hover {
+    background: white;
+    color: rgb(56, 43, 173);
+}
