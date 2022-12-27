@@ -81,7 +81,7 @@ function registration() {
         }, 1000)
     })
 
-    if (localStorage.length > 0) {
+    if (localStorage.getItem('User')) {
         location.pathname = "homePage.html"
     }
 }

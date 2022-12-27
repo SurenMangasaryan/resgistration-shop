@@ -25,17 +25,30 @@ function homePage() {
                 let theProduct = document.createElement('div');
                 theProduct.classList.add("the-product")
 
-                products.images.forEach(item => {
-                    allImage = item;
-                })
+                for (let i = 0; i < products.images.length; i++) {
+                    allImage = products.images[i];
+                    let slide = 0;
+                    let btns = document.createElement('button');
+                    btns.classList.add('slide-btns')
+                    btns.innerHTML = products.title;
+                    innerAllProducts.append(btns)
+
+                    btns.addEventListener('click', function () {
+                        if (slide < products.images.length) {
+                            slide++;
+                            console.log(products.images[i]);
+                        }
+
+                    })
+                }
 
                 theProduct.innerHTML = `
                                         <h1>${products.title}</h1> <img src="${allImage}"> <br>
-                                        <button class="slide-btns">${products.title}</button>
                                         <h2>${products.category}</h2> <p>${products.description}</p>
                                     `
                 innerAllProducts.append(theProduct);
             }
+
         }
         xhr.send();
     }
@@ -74,3 +87,46 @@ function homePage() {
     getCategories()
 }
 homePage()
+
+
+
+//tarberak 2 stugum  getProducts();
+
+// let allImage;
+// let products;
+// let allProducts = JSON.parse(resp.target.response)
+
+// for (let i = 0; i < allProducts.products.length; i++) {
+//     products = allProducts.products[i];
+//     innerAllProducts.innerHTML = "";
+
+//     let theProduct = document.createElement('div');
+//     theProduct.classList.add("the-product");
+
+//     let slide = 0;
+
+//     for (let i = 0; i < products.images.length; i++) {
+//         allImage = products.images[i];
+
+//         let btns = document.createElement('button');
+//         btns.classList.add('slide-btns')
+//         btns.innerHTML = products.title;
+//         innerAllProducts.append(btns)
+
+        
+
+//         btns.addEventListener('click', function () {
+//             if (slide < products.images.length) {
+//                 slide++;
+//                 theProduct.innerHTML = products.images[i];
+//             }
+//             innerAllProducts.append(theProduct);
+//         })
+//     }
+
+//     theProduct.innerHTML = `
+//                             <h1>${products.title}</h1> <img src="${allImage}"> 
+//                             <h2>${products.category}</h2> <p>${products.description}</p>
+//                         `
+//     innerAllProducts.append(theProduct);
+// }
