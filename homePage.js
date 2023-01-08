@@ -9,6 +9,7 @@ function homePage() {
     })
 
     let innerAllProducts = document.querySelector(".inner-all-products");
+    let oneProduct = document.querySelector('.one-product');
 
     function getProducts(url) {
         let xhr = new XMLHttpRequest();
@@ -27,13 +28,14 @@ function homePage() {
 
                 for (let i = 0; i < products.images.length; i++) {
                     allImage = products.images[i];
-                    let slide = 0;
                     let btns = document.createElement('button');
                     btns.classList.add('slide-btns')
                     btns.innerHTML = products.title;
-                    innerAllProducts.append(btns)
+                    oneProduct.append(btns)
 
                     btns.addEventListener('click', function () {
+                        let slide = 0;
+                    
                         if (slide < products.images.length) {
                             slide++;
                             console.log(products.images[i]);
@@ -46,7 +48,8 @@ function homePage() {
                                         <h1>${products.title}</h1> <img src="${allImage}"> <br>
                                         <h2>${products.category}</h2> <p>${products.description}</p>
                                     `
-                innerAllProducts.append(theProduct);
+                                    oneProduct.append(theProduct);
+                                    innerAllProducts.append(oneProduct)
             }
 
         }

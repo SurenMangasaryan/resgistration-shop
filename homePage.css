@@ -36,7 +36,12 @@ body {
     flex-wrap: wrap;
     justify-content: space-around;
     align-items: center;
-    row-gap: 100px;
+}
+.one-product> * {
+    margin-top: 30px;
+}
+.one-product> .the-product {
+    margin-top: 80px;
 }
 
 .inner-all-categories {
@@ -80,8 +85,8 @@ body {
     color: rgb(255, 255, 255);
     cursor: pointer;
     transition: all .3s linear;
+    margin-right: 10px;
 }
-
 .slide-btns:hover {
     background: white;
     color: rgb(56, 43, 173);
