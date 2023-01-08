@@ -17,7 +17,7 @@ function homePage() {
         xhr.onload = (resp) => {
             let allImage;
             let products;
-            let allProducts = JSON.parse(resp.target.response)
+            let allProducts = JSON.parse(resp.target.response);
             innerAllProducts.innerHTML = "";
 
             for (let i = 0; i < allProducts.products.length; i++) {
@@ -27,6 +27,7 @@ function homePage() {
                 theProduct.classList.add("the-product")
 
                 for (let i = 0; i < products.images.length; i++) {
+
                     allImage = products.images[i];
                     let btns = document.createElement('button');
                     btns.classList.add('slide-btns')

@@ -37,10 +37,12 @@ body {
     justify-content: space-around;
     align-items: center;
 }
-.one-product> * {
+
+.one-product>* {
     margin-top: 30px;
 }
-.one-product> .the-product {
+
+.one-product>.the-product {
     margin-top: 80px;
 }
 
@@ -87,6 +89,7 @@ body {
     transition: all .3s linear;
     margin-right: 10px;
 }
+
 .slide-btns:hover {
     background: white;
     color: rgb(56, 43, 173);
