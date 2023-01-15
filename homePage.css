@@ -32,14 +32,17 @@ body {
 .inner-all-products {
     padding: 60px 0;
     width: 100%;
-    
+
 }
-.one-product{
+
+.one-product {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-around;
+    justify-content: center;
     align-items: center;
+    padding: 0 5px;
 }
+
 .one-product>* {
     margin-top: 30px;
 }
@@ -72,6 +75,7 @@ body {
 
 .the-product h1 {
     text-decoration: underline;
+    font-size: 20px;
 }
 
 .the-product img {
@@ -114,6 +118,9 @@ body {
     color: black;
     font-size: 10px;
     cursor: pointer;
+    position: relative;
+    top: 270px;
+    left: -410px;
 }
 
 .circle:hover {

@@ -9,7 +9,6 @@ logOut.addEventListener('click', function () {
 
 let innerAllProducts = document.querySelector(".inner-all-products");
 let oneProduct = document.querySelector('.one-product');
-
 function getProducts(url) {
     let xhr = new XMLHttpRequest();
     xhr.open('GET', url);
@@ -17,35 +16,27 @@ function getProducts(url) {
         let allProducts = JSON.parse(resp.target.response);
         oneProduct.innerHTML = "";
 
-        for (let i = 0; i < allProducts.products.length; i++) {
+        allProducts.products.forEach(element => {
             let theProduct = document.createElement('div');
             theProduct.classList.add("the-product")
-            theProduct.innerHTML = `
-                                        <h1>${allProducts.products[i].title}</h1> <img src="${allProducts.products[i].images[0]}"> <br>
-                                        <h2>${allProducts.products[i].category}</h2> <p>${allProducts.products[i].description}</p>
-                                    `
+            theProduct.innerHTML = `<h1>${element.title}</h1> <img src="${element.images[0]}"> <br> <h2>${element.category}</h2> <p>${element.description}</p>`
             oneProduct.append(theProduct);
 
-            for (let j = 0; j < allProducts.products[i].images.length; j++) {
+            element.images.forEach((items, index) => {
                 let circle = document.createElement('div');
                 circle.classList.add('circle');
-                circle.innerHTML = j;
-                theProduct.append(circle);
+                circle.innerHTML = index;
+                oneProduct.append(circle);
 
-                circle.addEventListener('click', function () {
-                    theProduct.innerHTML = `
-                                        <h1>${allProducts.products[i].title}</h1> <img src="${allProducts.products[i].images[j]}"> <br>
-                                        <h2>${allProducts.products[i].category}</h2> <p>${allProducts.products[i].description}</p>
-                                    `
+                circle.addEventListener('click', () => {
+                    theProduct.innerHTML = ` <h1>${element.title}</h1> <img src="${items}"> <br> <h2>${element.category}</h2> <p>${element.description}</p> `
                 })
-            }
-        }
-
+            })
+        });
     }
     xhr.send();
 }
 getProducts('https://dummyjson.com/products');
-
 
 function getCategories(url) {
     let innerCategories = document.querySelector('.inner-all-categories');
