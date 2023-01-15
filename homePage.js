@@ -1,136 +1,79 @@
-function homePage() {
-    let logOut = document.querySelector(".log-out");
+let logOut = document.querySelector(".log-out");
 
-    logOut.addEventListener('click', function () {
-        if (localStorage.getItem('User')) {
-            localStorage.removeItem('User');
-            location.pathname = 'registration.html';
-        }
-    })
-
-    let innerAllProducts = document.querySelector(".inner-all-products");
-    let oneProduct = document.querySelector('.one-product');
-
-    function getProducts(url) {
-        let xhr = new XMLHttpRequest();
-        xhr.open('GET', url);
-        xhr.onload = (resp) => {
-            let allImage;
-            let products;
-            let allProducts = JSON.parse(resp.target.response);
-            innerAllProducts.innerHTML = "";
-
-            for (let i = 0; i < allProducts.products.length; i++) {
-                products = allProducts.products[i];
-
-                let theProduct = document.createElement('div');
-                theProduct.classList.add("the-product")
-
-                for (let i = 0; i < products.images.length; i++) {
-
-                    allImage = products.images[i];
-                    let btns = document.createElement('button');
-                    btns.classList.add('slide-btns')
-                    btns.innerHTML = products.title;
-                    oneProduct.append(btns)
-
-                    btns.addEventListener('click', function () {
-                        let slide = 0;
-                    
-                        if (slide < products.images.length) {
-                            slide++;
-                            console.log(products.images[i]);
-                        }
-
-                    })
-                }
-
-                theProduct.innerHTML = `
-                                        <h1>${products.title}</h1> <img src="${allImage}"> <br>
-                                        <h2>${products.category}</h2> <p>${products.description}</p>
-                                    `
-                                    oneProduct.append(theProduct);
-                                    innerAllProducts.append(oneProduct)
-            }
-
-        }
-        xhr.send();
+logOut.addEventListener('click', function () {
+    if (localStorage.getItem('User')) {
+        localStorage.removeItem('User');
+        location.pathname = 'registration.html';
     }
-    getProducts('https://dummyjson.com/products');
+})
 
+let innerAllProducts = document.querySelector(".inner-all-products");
+let oneProduct = document.querySelector('.one-product');
 
-    function getCategories() {
-        let innerCategories = document.querySelector('.inner-all-categories');
-        let xhr = new XMLHttpRequest();
+function getProducts(url) {
+    let xhr = new XMLHttpRequest();
+    xhr.open('GET', url);
+    xhr.onload = (resp) => {
+        let allProducts = JSON.parse(resp.target.response);
+        oneProduct.innerHTML = "";
 
-        let all = document.createElement('button');
-        all.classList.add('catigory-btn');
-        all.innerHTML = "All";
-        innerCategories.append(all);
+        for (let i = 0; i < allProducts.products.length; i++) {
+            let theProduct = document.createElement('div');
+            theProduct.classList.add("the-product")
+            theProduct.innerHTML = `
+                                        <h1>${allProducts.products[i].title}</h1> <img src="${allProducts.products[i].images[0]}"> <br>
+                                        <h2>${allProducts.products[i].category}</h2> <p>${allProducts.products[i].description}</p>
+                                    `
+            oneProduct.append(theProduct);
 
-        xhr.open('GET', 'https://dummyjson.com/products/categories');
-        xhr.onload = (resp) => {
-            let allCategories = JSON.parse(resp.target.response);
+            for (let j = 0; j < allProducts.products[i].images.length; j++) {
+                let circle = document.createElement('div');
+                circle.classList.add('circle');
+                circle.innerHTML = j;
+                theProduct.append(circle);
 
-            for (let i = 0; i < allCategories.length; i++) {
-                let categoryBtns = document.createElement('button');
-                categoryBtns.classList.add('catigory-btn');
-                categoryBtns.innerHTML = allCategories[i];
-                innerCategories.append(categoryBtns);
-
-                categoryBtns.addEventListener('click', () => {
-                    getProducts(`https://dummyjson.com/products/category/${allCategories[i]}`)
+                circle.addEventListener('click', function () {
+                    theProduct.innerHTML = `
+                                        <h1>${allProducts.products[i].title}</h1> <img src="${allProducts.products[i].images[j]}"> <br>
+                                        <h2>${allProducts.products[i].category}</h2> <p>${allProducts.products[i].description}</p>
+                                    `
                 })
             }
-            all.addEventListener('click', () => {
-                getProducts('https://dummyjson.com/products')
+        }
+
+    }
+    xhr.send();
+}
+getProducts('https://dummyjson.com/products');
+
+
+function getCategories(url) {
+    let innerCategories = document.querySelector('.inner-all-categories');
+    let xhr = new XMLHttpRequest();
+
+    let all = document.createElement('button');
+    all.classList.add('catigory-btn');
+    all.innerHTML = "All";
+    innerCategories.append(all);
+
+    xhr.open('GET', url);
+    xhr.onload = (resp) => {
+        let allCategories = JSON.parse(resp.target.response);
+
+        for (let i = 0; i < allCategories.length; i++) {
+            let categoryBtns = document.createElement('button');
+            categoryBtns.classList.add('catigory-btn');
+            categoryBtns.innerHTML = allCategories[i];
+            innerCategories.append(categoryBtns);
+
+            categoryBtns.addEventListener('click', () => {
+                getProducts(`https://dummyjson.com/products/category/${allCategories[i]}`)
             })
         }
-        xhr.send();
+        all.addEventListener('click', () => {
+            getProducts('https://dummyjson.com/products')
+        })
     }
-    getCategories()
+    xhr.send();
 }
-homePage()
-
-
-
-//tarberak 2 stugum  getProducts();
-
-// let allImage;
-// let products;
-// let allProducts = JSON.parse(resp.target.response)
-
-// for (let i = 0; i < allProducts.products.length; i++) {
-//     products = allProducts.products[i];
-//     innerAllProducts.innerHTML = "";
-
-//     let theProduct = document.createElement('div');
-//     theProduct.classList.add("the-product");
-
-//     let slide = 0;
-
-//     for (let i = 0; i < products.images.length; i++) {
-//         allImage = products.images[i];
-
-//         let btns = document.createElement('button');
-//         btns.classList.add('slide-btns')
-//         btns.innerHTML = products.title;
-//         innerAllProducts.append(btns)
-
-        
-
-//         btns.addEventListener('click', function () {
-//             if (slide < products.images.length) {
-//                 slide++;
-//                 theProduct.innerHTML = products.images[i];
-//             }
-//             innerAllProducts.append(theProduct);
-//         })
-//     }
-
-//     theProduct.innerHTML = `
-//                             <h1>${products.title}</h1> <img src="${allImage}"> 
-//                             <h2>${products.category}</h2> <p>${products.description}</p>
-//                         `
-//     innerAllProducts.append(theProduct);
-// }
+getCategories('https://dummyjson.com/products/categories')
